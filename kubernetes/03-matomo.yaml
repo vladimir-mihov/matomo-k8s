@@ -164,6 +164,8 @@ kind: Service
 metadata:
   name: nginx
   namespace: matomo
+  annotations:
+    metallb.universe.tf/allow-shared-ip: "ui-back-end-sharing-key"
 spec:
   selector:
     app: nginx
