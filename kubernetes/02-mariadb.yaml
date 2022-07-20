@@ -9,6 +9,18 @@ data:
   MARIADB_PASSWORD: matomo
   MARIADB_DATABASE: matomo
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mariadb-pvc
+  namespace: matomo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500M
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -54,15 +66,3 @@ spec:
       port: 3306
       targetPort: mariadb
   type: ClusterIP
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mariadb-pvc
-  namespace: matomo
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 500M
