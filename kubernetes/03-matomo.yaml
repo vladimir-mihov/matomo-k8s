@@ -80,6 +80,18 @@ data:
       }
     }
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: matomo-pvc
+  namespace: matomo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100M
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -174,15 +186,3 @@ spec:
       port: 9000
       targetPort: matomo
   type: ClusterIP
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: matomo-pvc
-  namespace: matomo
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10M
