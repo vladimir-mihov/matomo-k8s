@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: mariadb-config
+  namespace: matomo
 data:
   MARIADB_ROOT_PASSWORD: cikx103xorkwdj0K_oiOJOI12jCO
   MARIADB_USER: matomo
@@ -12,6 +13,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mariadb-deployment
+  namespace: matomo
 spec:
   replicas: 1
   selector:
@@ -43,6 +45,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mariadb
+  namespace: matomo
 spec:
   selector:
     app: mariadb
@@ -56,6 +59,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mariadb-pvc
+  namespace: matomo
 spec:
   accessModes:
     - ReadWriteOnce
